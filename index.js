@@ -1,237 +1,238 @@
-// const cleartime = setTimeout(myfunc, 2000);
-// document.write("I love You");
-// function myfunc() {
-//   alert("hello there!");
+console.log("hello");
+function myfunc(item) {
+  return item.split("").reverse().join("");
+}
+console.log(myfunc("nabeel"));
+
+function myfunc1(num) {
+  return num.toString().split("").reverse().join("");
+}
+console.log(myfunc1(12333));
+// let array = [2,3,4,6,6,'hello'].filter(myfunc2)
+// function myfunc2(value){
+//  return value < 6
 // }
-const greet = (name) => {
-  alert("hello  " + name);
-};
-function inputuser(callback) {
-  var name = prompt("please enter name");
-  callback(name);
-}
-inputuser(greet);
-const myinterval = setInterval(myfunction, 1000);
-function myfunction() {
-  let d = new Date();
-  document.getElementById("demo").innerText =
-    d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-}
-const btn = document.querySelector("button");
-btn.addEventListener("click", () => {
-  clearInterval(myinterval);
-});
-
-async function myfunc() {
-  let promise = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-      resolve("I love You!!");
-    }, 3000);
-  });
-  let myPromise = new Promise(function (resolve, reject) {
-    setTimeout(() => {
-      resolve("I Hate You!!");
-    }, 6000);
-  });
-  document.getElementById("demo2").innerText = await promise;
-  document.getElementById("demo2").innerText = await myPromise;
-}
-myfunc();
-
-let add = (a, b, call) => {
-  console.log(a * b);
-  call();
-};
-let callback = () => {
-  console.log("multiply");
-};
-new Promise((res) => {
-  add(2, 2, callback);
-});
-
-let food = {
-  item: ["tandoori chicken", "karahi"],
-  ingrediants: ["spices", "salt"],
-  drink: ["water", "vinegar"],
-  meal: "chicken",
-};
-let order = (fruit_name, callback) => {
-  setTimeout(function () {
-    console.log(`${food.item[fruit_name]} was selected`);
-    callback();
-  }, 2000);
-};
-function productFood() {
-  setTimeout(() => {
-    console.log("production has started");
-    setTimeout(() => {
-      console.log(`adding ${food.ingrediants[1]} and ${food.ingrediants[0]} `);
-      setTimeout(() => {
-        console.log(`adding ${food.drink[0]} and ${food.drink[1]}`);
-        setTimeout(() => {
-          console.log(`adding ${food.meal}`);
-          setTimeout(() => {
-            console.log("your product is ready");
-          }, 6000);
-        }, 4000);
-      }, 3000);
-    }, 2000);
-  }, 1000);
-}
-order(1, productFood);
-// Promise.all gives output if all are true otherwise gives rejected one
-let timout = Promise.all([
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("1sec");
-    }, 1000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("2sec");
-    }, 2000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("3sec");
-    }, 3000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject("ended");
-    }, 4000);
-  }),
-]);
-timout
-  .then((item) => {
-    console.log("hello", item);
-  })
-  .catch((err) => {
-    console.log("world", err);
-  });
-// promise.allSettled give all output with reason
-let timout1 = Promise.allSettled([
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("1sec");
-    }, 1000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("2sec");
-    }, 2000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("3sec");
-    }, 3000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject("ended");
-    }, 4000);
-  }),
-]);
-timout1
-  .then((item) => {
-    console.log("hello", item);
-  })
-  .catch((err) => {
-    console.log("world", err);
-  });
-// promise.race give of 1 as soon as possible either it is true or false
-let timout2 = Promise.race([
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject("1sec");
-    }, 1000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject("2sec");
-    }, 2000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("3sec");
-    }, 3000);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject("ended");
-    }, 4000);
-  }),
-]);
-timout2
-  .then((item) => {
-    console.log("hello", item);
-  })
-  .catch((err) => {
-    console.log("world", err);
-  });
-//   another example of race it takes 2nd one because of time
-let timeout3 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("hello");
-  }, 4000);
-});
-let timeout4 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("world");
-  }, 3000);
-});
-Promise.race([timeout3, timeout4])
-  .then((value) => {
-    console.log("!!", value);
-  })
-  .catch((err) => {
-    console.log("ended", err);
-  });
-// fetch api
-async function fetchAPI() {
-  let res = await fetch("https://randomuser.me/api/?results=10");
-  return await res.json();
-}
-async function getData() {
-  let user = await fetchAPI();
-  document.getElementById("user").innerText = JSON.stringify(
-    user.results[0].name
-  );
-}
-getData();
-
-// let order1 = (time, work) => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve(work());
-//     }, time);
-//   });
-// };
-// order(2000, () => {
-//   console.log("production has started");
+// console.log(array)
+// let array1 = array.filter(function myfunc3 (value) {
+//     return value > 2
 // })
-//   .then(() => {
-//     return order(0000, () => console.log("production has started"));
-//   })
-//   .catch(() => {
-//     console.log("Customer left");
-//   })
-//   .finally(() => {
-//     console.log("end of day");
-//   });
-// async function kitchen() {
-//   try {
-//     await time(2000);
-//     console.log("production has started");
-//     await time(3000);
-//     console.log(`adding ${food.ingrediants[1]} and ${food.ingrediants[0]} `);
-//     await time(4000);
-//     console.log(`adding ${food.drink[0]} and ${food.drink[1]}`);
-//     await time(5000);
-//     console.log(`adding ${food.meal}`);
-//     await time(6000);
-//     console.log("your product is ready");
-//   } catch (error) {
-//     console.log("customer leave");
+// console.log(array1)
+let array = [2, 3, 4, 6, 6, "hello"];
+array.shift();
+array.splice(2, 2);
+console.log(array);
+let a = [2, 3, 6, 9, 10, 7];
+
+// function test(...n) {
+//   for (let i = 0 ; i< n.length ; i++) {
+//     if (i === 1 ) {
+//       document.write("false   " + i);
+//     } else if (i === 2) {
+//         document.write("true   " + i);
+//     } else {
+//       for (let x = 2; x < i; x++) {
+//         if (i % x === 0) {
+//             document.write("false  "+ i);
+//         }
+//         document.write("true    " + i);
+//       }
+//     }
 //   }
 // }
+
+// console.log(test(...a));
+function test_prime(...n) {
+  console.log(...n);
+  for (let x of n) {
+    if (x === 1) {
+      return false;
+    } else if (x === 2) {
+      console.log("true");
+    } else {
+      for (var x1 = 2; x1 < x; x1++) {
+        if (x % x1 === 0) {
+          console.log("false");
+        }
+      }
+      console.log("true");
+    }
+  }
+}
+
+console.log(test_prime(...a));
+
+let sample = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
+
+var sum = 0;
+for (var i = 0; i < sample.length; i++) {
+  sum = sum + sample[i];
+  console.log(sample[i]);
+  sample[i].reduce(function (a, b) {
+    console.log(a + b);
+  });
+}
+
+var sum1 = 0;
+for (var i = 0; i < sample.length; i++) {
+  for (var j = 0; j < sample[i].length; j++) {
+    sum1 += sample[i][j];
+  }
+}
+console.log("total  " + sum1);
+const obj1 = {
+  id: 1,
+  title: "hello",
+};
+const obj2 = {
+  id: 1,
+  post: "world",
+};
+let v = { ...obj1, ...obj2 };
+console.log(v);
+
+const obj3 = [
+  {
+    id: 1,
+    title: "hello",
+  },
+  {
+    id: 2,
+    title: "hi",
+  },
+];
+const obj4 = [
+  {
+    id: 1,
+    post: "hello",
+  },
+  {
+    id: 2,
+    post: "hi",
+  },
+];
+let g = obj3.concat(...obj3, ...obj4);
+
+console.log(g);
+const arr = [4, 3, 6, 3, 4, 3];
+
+function count_duplicate(a) {
+  let counts = {};
+  for (let i = 0; i < a.length; i++) {
+    if (counts[a[i]]) {
+      counts[a[i]] += 1;
+    } else {
+      counts[a[i]] = 1;
+    }
+  }
+  console.log(counts);
+}
+count_duplicate(arr);
+
+// java script is a single threaded which means it works in a line , javascipt can multithreaded by event loop which gives us javascript as a multithreaded by illusion
+async function myfunc6(item) {
+  let market = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  let result = await market.json();
+  console.log(result);
+}
+myfunc6();
+let myPromise = new Promise(function (resolve, reject) {
+  let x = 0;
+  if (x === 0) {
+    resolve("ok");
+  } else {
+    reject("reject");
+  }
+});
+// function hello(some){
+//   console.log(some)
+// }
+// myPromise.then(function(value){
+//   hello(value)
+// },
+// function(error){
+//   hello(error)
+// })
+
+let x = 5;
+function myfunc8(x, y) {
+  try {
+    console.log(x + y);
+  } catch (error) {
+    console.log(error);
+  }
+}
+myfunc8(9, 9);
+let myPromise1 = new Promise(function (resolve, reject) {
+  let x = 0;
+  if (x === 0) {
+    resolve("ok1");
+  } else {
+    reject("reject");
+  }
+});
+// return promise which faster to execute
+Promise.race([myPromise, myPromise1]).then(function (value) {
+  console.log(value);
+});
+// make a new promise and return promise in array
+Promise.all([myPromise, myPromise1]).then((value) => {
+  console.log(value);
+});
+// return promise in array of object
+Promise.allSettled([myPromise, myPromise1]).then((value) => {
+  console.log(value);
+});
+// set interval
+// setInterval((g) => {
+//   let time = new Date()
+//   console.log(time.getHours()+" :"+time.getMinutes()+":"+time.getSeconds())
+// }, 1000);
+// timeout using async function
+async function time() {
+  setTimeout(() => {
+    console.log(" this is time out");
+  }, 3000);
+}
+time();
+// /timeout using promises
+let myPromise2 = new Promise(function (resolve, reject) {
+  setTimeout(() => {
+    console.log("I love You");
+  }, 2000);
+});
+let myPromise3 = new Promise(function (resolve, rejcet) {
+  setTimeout(() => {
+    console.log(" I hate you");
+  }, 4000);
+});
+Promise.all([myPromise2, myPromise3]).then((value) => {
+  console.log(value);
+});
+//  callback function
+function some(value) {
+  console.log(value);
+}
+function time1(x, y, myCallback) {
+  let sum = x + y;
+  myCallback(sum);
+}
+time1(1, 54, some);
+const name1 = prompt("please enter string");
+let result3 = name1.split("");
+let countss = 0;
+for (let index = 0; index < result3.length; index++) {
+  const element = result3[index];
+  if (element.toLowerCase() === "a") {
+    countss++;
+  }
+}
+console.log(result3, countss);
+// function takeSt(value) {
+//   console.log(value)
+
+// }
+// takeSt(name)
